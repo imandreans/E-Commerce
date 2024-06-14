@@ -1,0 +1,46 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 91.5vh;
+  background-color: #f14040;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  /* align-items: center; */
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  width: 440px;
+  height: 240px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.bottom-form,
+.register {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.register {
+  gap: 10px;
+}
+/* .register > a {
+  text-decoration: none;
+  color: black;
+} */
+
+#login-button {
+  border-radius: 5px !important;
+  background-color: black !important;
+  /* width: 100px !important; */
+}
