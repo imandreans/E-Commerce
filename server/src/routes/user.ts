@@ -1,7 +1,7 @@
+import { bcrypt } from "bcryptjs";
 import { Router, Request, Response, NextFunction } from "express";
 import { IUser, UserModel } from "../models/user";
 import { UserErrors } from "../errors";
-import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { availableMemory } from "process";
 
