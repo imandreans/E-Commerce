@@ -52,12 +52,13 @@ export const ShopContextProvider = (props) => {
   const { headers } = useGetToken();
 
   const navigate = useNavigate();
+  console.log(isAuthenticated);
 
   // function to get available money from user
   const fetchAvailableMoney = async () => {
     try {
       // get user's available money
-      const res = await axios.get(`http://localhost:3001/user/available-money/${localStorage.getItem("userID")}`, { headers });
+      const res = await axios.get(`https://e-commerce-sand-one.vercel.app/user/available-money/${localStorage.getItem("userID")}`, { headers });
       // set available money to display it later
       setAvailableMoney(res.data.availableMoney);
     } catch (error) {
@@ -67,7 +68,7 @@ export const ShopContextProvider = (props) => {
   const fetchPurchasedItems = async () => {
     try {
       // get user's purchased items
-      const res = await axios.get(`http://localhost:3001/product/purchased-items/${localStorage.getItem("userID")}`, { headers });
+      const res = await axios.get(`https://e-commerce-sand-one.vercel.app/product/purchased-items/${localStorage.getItem("userID")}`, { headers });
       // set purchased items to display it later
       setPurchasedItems(res.data.purchasedItems);
     } catch (error) {
@@ -125,7 +126,7 @@ export const ShopContextProvider = (props) => {
   const checkout = async () => {
     const body = { customerID: localStorage.getItem("userID"), cartItems };
     try {
-      await axios.post("http://localhost:3001/product/checkout", body, { headers });
+      await axios.post("https://e-commerce-sand-one.vercel.app/product/checkout", body, { headers });
       // empty carts
       setCartItems({});
       // retrieve user money
@@ -142,18 +143,18 @@ export const ShopContextProvider = (props) => {
       }
     }
   };
+  useEffect(() => {
+    if (!isAuthenticated) {
+      localStorage.clear();
+      setCookies("access_token", null, { sameSite: "lax" });
+    }
+    // send value of isAuthenticated
+  }, [isAuthenticated]);
   // synchronize a component, triggered when the shopcontext provider is called
   useEffect(() => {
     if (isAuthenticated) {
       fetchAvailableMoney();
       fetchPurchasedItems();
-    }
-    // send value of isAuthenticated
-  }, [isAuthenticated]);
-  useEffect(() => {
-    if (!isAuthenticated) {
-      localStorage.clear();
-      setCookies("access_token", null, { sameSite: "lax" });
     }
     // send value of isAuthenticated
   }, [isAuthenticated]);
