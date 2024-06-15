@@ -13,7 +13,7 @@ export const useGetProducts = () => {
   const fetchProducts = async () => {
     try {
       //get products and send headers of token to get verify / get access
-      const fetchedProducts = await axios.get("http://localhost:3001/product", { headers });
+      const fetchedProducts = await axios.get("https://e-commerce-sand-one.vercel.app/product", { headers });
       //product is store in products by using setProducts
       setProducts(fetchedProducts.data.products);
     } catch (err) {

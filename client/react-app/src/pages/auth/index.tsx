@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     try {
       //post input data to register
-      const result = await axios.post("http://localhost:3001/user/login", { username, password });
+      const result = await axios.post("https://e-commerce-sand-one.vercel.app/user/login", { username, password });
       // store token in setCookies
       setCookies("access_token", result.data.token, { sameSite: "lax" });
       // save user ID in localStorage
