@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { userRouter } from "./routes/user";
 import { productRouter } from "./routes/product";
+import { PORT, mongoDBURL } from "./config";
 
 // assign express as app
 const app = express();
@@ -18,7 +19,7 @@ app.use("/user", userRouter);
 app.use("/product", productRouter);
 
 // connect to the database
-mongoose.connect("mongodb+srv://andreansihombing83:D4v8tylJ5MhvHjSi@ecommerce.jdp7cpl.mongodb.net/ecommerce");
+mongoose.connect(mongoDBURL);
 
 // app running in PORT 3001, app will print 'server started'
-app.listen(3001, () => console.log("Server Started"));
+app.listen(PORT, () => console.log("Server Started"));
