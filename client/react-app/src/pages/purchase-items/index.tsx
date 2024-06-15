@@ -8,7 +8,6 @@ const PurchasedItemsPage = () => {
 
   return (
     <>
-      <Typography variant="h3">Previously Purchased</Typography>
       <div className="purchased-items-page">
         {purchasedItems.map((item) => {
           const count = getCartItemCount(item._id);

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { IShopContext, ShopContext } from "../context/shop-context";
@@ -20,10 +20,19 @@ export const Navbar = () => {
       <div className="navbar-links">
         {isAuthenticated ? (
           <>
-            <Link to="/purchased-items">Purchases</Link>
-            <Link to="/checkout">
+            <NavLink
+              to="/purchased-items"
+              // ="current"
+              className={({ isActive, isPending }) => (isPending ? "pending" : isActive ? "active" : "")}
+            >
+              Purchases
+            </NavLink>
+            <NavLink
+              to="/checkout"
+              className={({ isActive, isPending }) => (isPending ? "pending" : isActive ? "active" : "")}
+            >
               <FontAwesomeIcon icon={faShoppingCart} />
-            </Link>
+            </NavLink>
             {/* <Link to="/auth"></Link> */}
             <Link
               to="/"
