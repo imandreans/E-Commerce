@@ -33,3 +33,6 @@ a.active {
   /* text-decoration: underline; */
   color: rgb(92, 88, 234);
 }
+a:hover {
+  color: rgb(160, 157, 255);
+}

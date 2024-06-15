@@ -66,7 +66,7 @@ const CheckOutPage = () => {
           variant="h3"
           style={{ margin: 10, position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
         >
-          The cart is empty! Let's fill it with something you like
+          The cart is empty! Let's fill it with something you like!
         </Typography>
       )}
     </div>

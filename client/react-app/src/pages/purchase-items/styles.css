@@ -6,15 +6,6 @@
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
 }
-.purchased-items {
-  margin-top: 100px;
-  width: 100%;
-  height: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  row-gap: 50px;
-  place-items: center;
-}
 
 .card-header {
   display: flex;
@@ -30,4 +21,9 @@
 .add-to-cart-btn[disabled] {
   color: white !important;
   background-color: gray !important;
+}
+.purchased-items-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
