@@ -3,7 +3,7 @@ import Product from "./product";
 const ShopPage = () => {
   const { products } = useGetProducts();
   return (
-    <div className="shop">
+    <>
       <div className="products">
         {/* looping product */}
         {products.map((product) => (
@@ -13,7 +13,7 @@ const ShopPage = () => {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

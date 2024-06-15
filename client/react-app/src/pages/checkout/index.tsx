@@ -17,23 +17,21 @@ const CheckOutPage = () => {
   const totalAmount = getTotalCartAmount();
   return (
     <div className="cart">
-      <div>
+      {totalAmount > 0 && (
         <Typography
           variant="h3"
           style={{ margin: 10 }}
         >
           Your items
         </Typography>
-      </div>
-      <div className="cart">
-        {/* looping the item that is inside the cart */}
-        {products.map((product: IProduct) => {
-          // if item inside the cart
-          if (getCartItemCount(product._id) !== 0) {
-            return <CartItem product={product} />;
-          }
-        })}
-      </div>
+      )}
+      {/* looping the item that is inside the cart */}
+      {products.map((product: IProduct) => {
+        // if item inside the cart
+        if (getCartItemCount(product._id) !== 0) {
+          return <CartItem product={product} />;
+        }
+      })}
       {/* if there's item inside the cart */}
       {totalAmount > 0 ? (
         <div className="checkout">
@@ -64,7 +62,12 @@ const CheckOutPage = () => {
         </div>
       ) : (
         // if there's no item in the cart
-        <h1> Your Shopping cart is Empty</h1>
+        <Typography
+          variant="h3"
+          style={{ margin: 10, position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+        >
+          The cart is empty! Let's fill it with something you like
+        </Typography>
       )}
     </div>
   );

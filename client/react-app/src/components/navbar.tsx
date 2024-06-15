@@ -44,7 +44,12 @@ export const Navbar = () => {
             <span>${availableMoney.toFixed(2)}</span>
           </>
         ) : (
-          <Link to="/login">Login to Purchase</Link>
+          <NavLink
+            to="/login"
+            className={({ isActive, isPending }) => (isPending ? "pending" : isActive ? "active" : "")}
+          >
+            Login to Purchase
+          </NavLink>
         )}
       </div>
     </div>
