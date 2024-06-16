@@ -46,13 +46,14 @@ export const ShopContextProvider = (props) => {
 
   const [availableMoney, setAvailableMoney] = useState<number>(0);
   const [purchasedItems, setPurchasedItems] = useState<IProduct[]>([]);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(cookies.access_token === null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(cookies.access_token !== null);
 
   const { products } = useGetProducts();
   const { headers } = useGetToken();
 
   const navigate = useNavigate();
-  console.log(isAuthenticated);
+  console.log("auth " + isAuthenticated);
+  console.log("access_token " + cookies.access_token);
 
   // function to get available money from user
   const fetchAvailableMoney = async () => {
