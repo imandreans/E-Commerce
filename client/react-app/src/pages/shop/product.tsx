@@ -3,6 +3,8 @@ import { IProduct } from "../../models/interface";
 import "./styles.css";
 import { IShopContext, ShopContext } from "../../context/shop-context";
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 // import { height } from "@fortawesome/free-solid-svg-icons/fa0";
 interface props {
   product: IProduct;
@@ -11,13 +13,15 @@ interface props {
 // function to show product individually
 const Product = (props: props) => {
   const { _id, productName, description, price, stockQuantity, imageURL } = props.product;
-  const { addToCart, getCartItemCount, isAuthenticated } = useContext<IShopContext>(ShopContext);
+  const { addToCart, getCartItemCount, isAuthenticated, removeFromCart } = useContext<IShopContext>(ShopContext);
   const count = getCartItemCount(_id);
 
   console.log(count);
+
   return (
     <Card sx={{ width: 210, maxHeight: 300 }}>
       <CardMedia
+        component={"img"}
         sx={{ height: 150 }}
         image={imageURL}
       />
@@ -44,7 +48,7 @@ const Product = (props: props) => {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
         {isAuthenticated && (
           <>
             <Button
@@ -54,8 +58,24 @@ const Product = (props: props) => {
               disabled={stockQuantity === 0}
             >
               {/* Add to Cart {count > 0 && <>({count})</>} */}
-              {stockQuantity === 0 ? "Stock empty" : <>Add to Cart {count > 0 && `(${count})`}</>}
+              {stockQuantity === 0 ? (
+                "Stock is empty"
+              ) : (
+                <>
+                  <AddIcon /> {count > 0 && `(${count})`}
+                </>
+              )}
             </Button>
+            {count > 0 && (
+              <Button
+                variant="outlined"
+                onClick={() => removeFromCart(_id)}
+                // sx={{ borderColor: "#f14040" }}
+                color="error"
+              >
+                <DeleteIcon />
+              </Button>
+            )}
           </>
         )}
       </CardActions>

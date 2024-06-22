@@ -1,14 +1,7 @@
-.products {
-  margin-top: 100px;
-  /* width: 100%; */
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  row-gap: 50px;
-  place-items: center;
-}
-@media only screen and (max-width: 409px) {
-  .products {
-    display: flex;
-    flex-direction: column;
-  }
+main {
+  display: flex;
+  gap: 40px;
+  margin: 40px 40px 0 40px;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }

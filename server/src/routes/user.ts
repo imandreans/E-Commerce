@@ -53,7 +53,7 @@ router.post("/login", async (req: Request, res: Response) => {
     }
 
     //create and send token to create the user.
-    const token = jwt.sign({ id: user._id }, "secret");
+    const token = jwt.sign({ id: user._id }, "secret", { expiresIn: "30s" });
     res.json({ token, userID: user._id });
   } catch (err) {
     res.status(500).json({ type: err });

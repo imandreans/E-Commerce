@@ -14,13 +14,13 @@
 }
 
 .add-to-cart-btn {
-  background-color: black !important;
-  margin-bottom: 10px !important;
+  background-color: rgb(92, 88, 234) !important;
+  height: min-content !important;
 }
 .add-to-cart-btn:disabled,
 .add-to-cart-btn[disabled] {
   color: white !important;
-  background-color: gray !important;
+  background-color: rgb(116, 114, 147) !important;
 }
 .purchased-items-page {
   display: flex;

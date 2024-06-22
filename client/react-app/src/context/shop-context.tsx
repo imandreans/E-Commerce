@@ -46,12 +46,13 @@ export const ShopContextProvider = (props) => {
 
   const [availableMoney, setAvailableMoney] = useState<number>(0);
   const [purchasedItems, setPurchasedItems] = useState<IProduct[]>([]);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(cookies.access_token !== null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   const { products } = useGetProducts();
   const { headers } = useGetToken();
 
   const navigate = useNavigate();
+
   console.log("auth " + isAuthenticated);
   console.log("access_token " + cookies.access_token);
 
@@ -145,10 +146,16 @@ export const ShopContextProvider = (props) => {
     }
   };
   useEffect(() => {
-    console.log(isAuthenticated);
+    if (cookies.access_token) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  });
+  useEffect(() => {
     if (!isAuthenticated) {
       localStorage.clear();
-      setCookies("access_token", null, { sameSite: "lax" });
+      setCookies("access_token", null);
     }
     // send value of isAuthenticated
   }, [isAuthenticated]);

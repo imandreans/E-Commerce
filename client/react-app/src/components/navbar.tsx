@@ -2,7 +2,8 @@ import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { IShopContext, ShopContext } from "../context/shop-context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
 export const Navbar = () => {
   const { availableMoney, isAuthenticated, setIsAuthenticated } = useContext<IShopContext>(ShopContext);
 
@@ -10,48 +11,65 @@ export const Navbar = () => {
     // when log out, set auth false
     setIsAuthenticated(false);
   };
+
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="navbar">
-      <Link to="/">
-        <div className="navbar-title">
-          <h2>Toko</h2>
-        </div>
-      </Link>
-      <div className="navbar-links">
-        {isAuthenticated ? (
-          <>
-            <NavLink
-              to="/purchased-items"
-              // ="current"
-              className={({ isActive, isPending }) => (isPending ? "pending" : isActive ? "active" : "")}
-            >
-              Purchases
-            </NavLink>
-            <NavLink
-              to="/checkout"
-              className={({ isActive, isPending }) => (isPending ? "pending" : isActive ? "active" : "")}
-            >
-              <FontAwesomeIcon icon={faShoppingCart} />
-            </NavLink>
-            {/* <Link to="/auth"></Link> */}
-            <Link
-              to="/"
-              onClick={logout}
-            >
-              Logout
-            </Link>
-            {/* display money */}
-            <span>${availableMoney.toFixed(2)}</span>
-          </>
-        ) : (
-          <NavLink
-            to="/login"
-            className={({ isActive, isPending }) => (isPending ? "pending" : isActive ? "active" : "")}
-          >
-            Login to Purchase
-          </NavLink>
-        )}
+      <div className="header">
+        <Link to="/">
+          <h3>Toko</h3>
+        </Link>
+        <MenuIcon
+          fontSize="large"
+          className="menu-icon"
+          onClick={() => setMenuOpen(!menuOpen)}
+        ></MenuIcon>
       </div>
+
+      {isAuthenticated ? (
+        <>
+          <ul className={menuOpen ? "open" : ""}>
+            <li id="purchased-items">
+              <NavLink
+                to="/purchased-items"
+                // ="current"
+                className={({ isActive, isPending }) => (isPending ? "pending" : isActive ? "active" : "")}
+              >
+                Purchases
+              </NavLink>
+            </li>
+            <li id="checkout">
+              <NavLink
+                to="/checkout"
+                className={({ isActive, isPending }) => (isPending ? "pending" : isActive ? "active" : "")}
+              >
+                {menuOpen ? "Checkout" : <FontAwesomeIcon icon={faShoppingCart} />}
+              </NavLink>
+            </li>
+            {/* <Link to="/auth"></Link> */}
+            <li id="logout">
+              <Link
+                to="/"
+                onClick={logout}
+              >
+                Logout
+              </Link>
+            </li>
+            {/* display money */}
+            <li id="available-money">
+              <span>${availableMoney.toFixed(2)}</span>
+            </li>
+          </ul>
+        </>
+      ) : (
+        <NavLink
+          to="/login"
+          className={({ isActive, isPending }) => (isPending ? "pending" : isActive ? "active" : "")}
+          id="login"
+        >
+          Login to Purchase
+        </NavLink>
+      )}
     </div>
   );
 };

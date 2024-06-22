@@ -4,7 +4,7 @@ const ShopPage = () => {
   const { products } = useGetProducts();
   return (
     <>
-      <div className="products">
+      <main>
         {/* looping product */}
         {products.map((product) => (
           <Product
@@ -12,7 +12,7 @@ const ShopPage = () => {
             product={product}
           />
         ))}
-      </div>
+      </main>
     </>
   );
 };
