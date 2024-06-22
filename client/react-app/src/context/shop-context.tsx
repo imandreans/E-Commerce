@@ -42,7 +42,7 @@ const defaultVal: IShopContext = {
 export const ShopContext = createContext<IShopContext>(defaultVal);
 
 export const ShopContextProvider = (props) => {
-  const [cookies, setCookies, removeCookie] = useCookies(["access_token"]);
+  const [cookies, _, removeCookie] = useCookies(["access_token"]);
   //        read items write items             objectId  num of item
   const [cartItems, setCartItems] = useState<{ string: number } | {}>({});
 
