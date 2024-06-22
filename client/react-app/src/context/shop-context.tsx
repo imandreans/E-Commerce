@@ -151,7 +151,7 @@ export const ShopContextProvider = (props) => {
     } else {
       setIsAuthenticated(false);
     }
-  }, [isAuthenticated]);
+  });
   useEffect(() => {
     if (!isAuthenticated) {
       localStorage.clear();
@@ -162,6 +162,8 @@ export const ShopContextProvider = (props) => {
   // synchronize a component, triggered when the shopcontext provider is called
   useEffect(() => {
     if (isAuthenticated) {
+      fetchAvailableMoney();
+      fetchPurchasedItems();
     }
     // send value of isAuthenticated
   }, [isAuthenticated]);
