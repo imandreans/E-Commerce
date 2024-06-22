@@ -2,7 +2,6 @@ import axios from "axios";
 import { SyntheticEvent, useState } from "react";
 import { UserErrors } from "../../models/errors";
 import { Button, TextField } from "@mui/material";
-import { URL2 } from "../../config";
 
 const Register = () => {
   const [username, setUsername] = useState<string>("");
@@ -14,7 +13,7 @@ const Register = () => {
       // prevent default browser action for the event
       e.preventDefault();
       //post input data to register
-      await axios.post(`${URL2}user/register`, { username, password });
+      await axios.post("https://e-commerce-sand-one.vercel.app/user/register", { username, password });
       alert("Registration Completed");
     } catch (err) {
       if (err?.response?.data?.type === UserErrors.USERNAME_ALREADY_EXIST) {
