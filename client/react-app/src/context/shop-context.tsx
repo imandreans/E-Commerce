@@ -148,25 +148,15 @@ export const ShopContextProvider = (props) => {
   useEffect(() => {
     if (cookies.access_token) {
       setIsAuthenticated(true);
+      fetchAvailableMoney();
+      fetchPurchasedItems();
     } else {
       setIsAuthenticated(false);
-    }
-  });
-  useEffect(() => {
-    if (!isAuthenticated) {
       localStorage.clear();
       setCookies("access_token", null);
     }
-    // send value of isAuthenticated
-  }, [isAuthenticated]);
-  // synchronize a component, triggered when the shopcontext provider is called
-  useEffect(() => {
-    if (isAuthenticated) {
-      fetchAvailableMoney();
-      fetchPurchasedItems();
-    }
-    // send value of isAuthenticated
-  }, [isAuthenticated]);
+  });
+
   //contains value of its function
   const contextValue: IShopContext = { addToCart, removeFromCart, updateCartItemCount, getCartItemCount, getTotalCartAmount, checkout, availableMoney, purchasedItems, isAuthenticated, setIsAuthenticated };
   // passing the value from its functions
