@@ -5,13 +5,7 @@ import { IShopContext, ShopContext } from "../context/shop-context";
 import { useContext, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 export const Navbar = () => {
-  const { availableMoney, isAuthenticated, setIsAuthenticated } = useContext<IShopContext>(ShopContext);
-
-  const logout = () => {
-    // when log out, set auth false
-    setIsAuthenticated(false);
-  };
-
+  const { availableMoney, isAuthenticated, handleLogout } = useContext<IShopContext>(ShopContext);
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="navbar">
@@ -50,7 +44,7 @@ export const Navbar = () => {
             <li id="logout">
               <Link
                 to="/"
-                onClick={logout}
+                onClick={handleLogout}
               >
                 Logout
               </Link>

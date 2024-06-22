@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import { useGetProducts } from "../hooks/useGetProducts";
 import { IProduct } from "../models/interface";
 import axios from "axios";
@@ -19,6 +19,7 @@ export interface IShopContext {
   purchasedItems: IProduct[];
   isAuthenticated: boolean;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
+  handleLogout: () => void;
 }
 //default value for each function
 const defaultVal: IShopContext = {
@@ -33,6 +34,7 @@ const defaultVal: IShopContext = {
   purchasedItems: [],
   isAuthenticated: false,
   setIsAuthenticated: () => null,
+  handleLogout: () => null,
 };
 
 //create ShopContext to pass down value of its function (ShopContextProvider)
@@ -40,7 +42,7 @@ const defaultVal: IShopContext = {
 export const ShopContext = createContext<IShopContext>(defaultVal);
 
 export const ShopContextProvider = (props) => {
-  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [cookies, setCookies, removeCookie] = useCookies(["access_token"]);
   //        read items write items             objectId  num of item
   const [cartItems, setCartItems] = useState<{ string: number } | {}>({});
 
@@ -57,7 +59,8 @@ export const ShopContextProvider = (props) => {
   console.log("access_token " + cookies.access_token);
 
   // function to get available money from user
-  const fetchAvailableMoney = async () => {
+  const fetchAvailableMoney = useCallback(async () => {
+    if (!isAuthenticated) return;
     try {
       // get user's available money
       const res = await axios.get(`https://e-commerce-sand-one.vercel.app/user/available-money/${localStorage.getItem("userID")}`, { headers });
@@ -66,8 +69,10 @@ export const ShopContextProvider = (props) => {
     } catch (error) {
       alert("ERROR: Something went wrong");
     }
-  };
-  const fetchPurchasedItems = async () => {
+  }, [isAuthenticated, cookies.access_token]);
+  const fetchPurchasedItems = useCallback(async () => {
+    if (!isAuthenticated) return;
+
     try {
       // get user's purchased items
       const res = await axios.get(`https://e-commerce-sand-one.vercel.app/product/purchased-items/${localStorage.getItem("userID")}`, { headers });
@@ -76,7 +81,7 @@ export const ShopContextProvider = (props) => {
     } catch (error) {
       alert("ERROR: Something went wrong");
     }
-  };
+  }, [isAuthenticated, cookies.access_token]);
 
   //get the amount of items in cart
   const getCartItemCount = (itemId: string): number => {
@@ -145,21 +150,19 @@ export const ShopContextProvider = (props) => {
       }
     }
   };
+  const handleLogout = () => {
+    removeCookie("access_token");
+    setIsAuthenticated(false);
+  };
   useEffect(() => {
     if (cookies.access_token) {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
     }
-  });
-  useEffect(() => {
-    if (!isAuthenticated) {
-      localStorage.clear();
-      setCookies("access_token", null);
-    }
-    // send value of isAuthenticated
-  }, [isAuthenticated]);
+  }, [cookies]);
   // synchronize a component, triggered when the shopcontext provider is called
+
   useEffect(() => {
     if (isAuthenticated) {
       fetchAvailableMoney();
@@ -167,8 +170,9 @@ export const ShopContextProvider = (props) => {
     }
     // send value of isAuthenticated
   }, [isAuthenticated]);
+
   //contains value of its function
-  const contextValue: IShopContext = { addToCart, removeFromCart, updateCartItemCount, getCartItemCount, getTotalCartAmount, checkout, availableMoney, purchasedItems, isAuthenticated, setIsAuthenticated };
+  const contextValue: IShopContext = { addToCart, removeFromCart, updateCartItemCount, getCartItemCount, getTotalCartAmount, checkout, availableMoney, purchasedItems, isAuthenticated, setIsAuthenticated, handleLogout };
   // passing the value from its functions
   return <ShopContext.Provider value={contextValue}>{props.children}</ShopContext.Provider>;
 };
