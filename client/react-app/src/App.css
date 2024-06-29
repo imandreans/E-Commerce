@@ -13,15 +13,43 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #f8f9fa;
 }
 
+main {
+  background-color: white;
+  padding: 80px 0 80px 0;
+}
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+  /* width: 1400px; */
+}
+
+.carousel .images-show {
+  display: flex;
+  transition-property: transform;
+  transition-timing-function: ease-out;
+  transition-duration: 0.8s;
+}
+.add-to-cart-btn {
+  background-color: #073b4c !important;
+  height: min-content !important;
+}
+.add-to-cart-btn:disabled,
+.add-to-cart-btn[disabled] {
+  color: white !important;
+  background-color: #78b7cc !important;
+}
 .navbar {
+  /* height: 100px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 40px 5px 40px;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: #073b4c;
   margin: auto;
   /* position: sticky; */
   top: 0;
@@ -32,7 +60,7 @@ body {
 }
 .navbar a {
   position: relative;
-  color: white;
+  color: #073b4c;
   text-decoration: none;
   font-size: 20px;
   margin-right: 20px;
@@ -44,10 +72,10 @@ body {
 }
 .navbar ul {
   position: relative;
-  font-weight: 600;
+  font-weight: bold;
   #available-money {
-    color: rgb(88, 234, 110);
-    border: 1px solid rgb(88, 234, 110);
+    color: #06d6a0;
+    border: 1px solid #06d6a0;
     padding: 15px;
     border-radius: 6px;
     cursor: default;
@@ -62,7 +90,7 @@ body {
   content: "";
   height: 6px;
   width: 100%;
-  background-color: rgb(92, 88, 234);
+  background-color: #073b4c;
   position: absolute;
   left: 0;
   bottom: -34.5px;
@@ -71,7 +99,7 @@ body {
   pointer-events: none;
 }
 .navbar #login::after {
-  bottom: -30.5px;
+  bottom: -31.5px;
 }
 .navbar ul li#logout a::after {
   background-color: rgb(234, 88, 88);

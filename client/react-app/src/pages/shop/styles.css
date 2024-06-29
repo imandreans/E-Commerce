@@ -1,7 +1,51 @@
 main {
   display: flex;
-  gap: 40px;
-  margin: 40px 40px 0 40px;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+}
+
+section {
+  display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
+  width: 100%;
+  gap: 40px;
+}
+
+aside {
+  /* height: 320px;
+  width: 160px; */
+  margin: 0 50px 0 50px;
+}
+
+.carousel {
+  position: relative;
+
+  aspect-ratio: 35 / 8;
+
+  width: 1400px;
+  /* background-color: #ffd166; */
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  img {
+    max-width: 100%;
+    aspect-ratio: 35 / 8;
+
+    height: auto;
+  }
+
+  /* height: auto; */
+}
+
+@media only screen and (max-width: 558px) {
+  .carousel,
+  aside {
+    display: none;
+  }
+
+  section {
+    padding: 0 30px 0 30px;
+  }
 }

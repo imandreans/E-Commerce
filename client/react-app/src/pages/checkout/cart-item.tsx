@@ -59,7 +59,7 @@ export const CartItem = (prop: Props) => {
         >
           <CardActions>
             <Button
-              style={{ width: 56, height: 56, borderColor: "black", color: "black" }}
+              sx={{ width: 56, height: 56, borderColor: "#073B4C", color: "#073B4C" }}
               id="reduce-button"
               variant="outlined"
               onClick={() => removeFromCart(_id)}
@@ -68,7 +68,7 @@ export const CartItem = (prop: Props) => {
               -{" "}
             </Button>
             <TextField
-              style={{ width: 56, height: 56 }}
+              sx={{ width: 56, height: 56 }}
               inputProps={{ min: 0, style: { textAlign: "center" } }}
               type="tel"
               value={cartItemCount}
@@ -77,7 +77,7 @@ export const CartItem = (prop: Props) => {
             />
             {/* add item and amount of it by one */}
             <Button
-              style={{ width: 56, height: 56, backgroundColor: "black" }}
+              sx={{ width: 56, height: 56, backgroundColor: "#073B4C" }}
               variant="contained"
               onClick={() => addToCart(_id)}
             >

@@ -47,14 +47,14 @@ const CheckOutPage = () => {
             <Button
               variant="outlined"
               onClick={() => navigate("/")}
-              style={{ color: "black", borderColor: "black", marginRight: 10 }}
+              style={{ color: "#073B4C", borderColor: "#073B4C", marginRight: 10 }}
             >
               Continue Shopping
             </Button>
             <Button
               variant="contained"
               onClick={() => checkout()}
-              style={{ backgroundColor: "black" }}
+              style={{ backgroundColor: "#073B4C" }}
             >
               Check Out
             </Button>

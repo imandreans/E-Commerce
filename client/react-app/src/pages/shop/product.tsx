@@ -70,7 +70,6 @@ const Product = (props: props) => {
               <Button
                 variant="outlined"
                 onClick={() => removeFromCart(_id)}
-                // sx={{ borderColor: "#f14040" }}
                 color="error"
               >
                 <DeleteIcon />

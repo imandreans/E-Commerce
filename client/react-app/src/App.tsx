@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
 import { Navbar } from "./components/navbar";
 import ShopPage from "./pages/shop";
 import PurchasedItemsPage from "./pages/purchase-items";
@@ -7,6 +6,9 @@ import CheckOutPage from "./pages/checkout";
 import AuthPage from "./pages/auth/index";
 import { ShopContextProvider } from "./context/shop-context";
 import Register from "./pages/auth/register";
+
+import "./App.css";
+
 function App() {
   return (
     <>
