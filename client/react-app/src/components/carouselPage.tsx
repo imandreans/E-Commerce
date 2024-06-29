@@ -17,7 +17,7 @@ const CarouselImage = ({ children: imgs }) => {
       <div className="carousel">
         <div
           className="images-show"
-          style={{ transform: `translateX(-${curr * 100.1}%)` }}
+          style={{ transform: `translateX(-${curr * 100}%)` }}
         >
           {imgs}
         </div>

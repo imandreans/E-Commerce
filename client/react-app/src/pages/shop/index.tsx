@@ -4,7 +4,8 @@ import CarouselImage from "../../components/carouselPage";
 
 const ShopPage = () => {
   const { products } = useGetProducts();
-  const imgs = ["../public/Jumbotron (ANIME).png", "../public/Jumbotron (GAMING).png", "../public/Jumbotron (HOUSEHOLD).png"];
+  const linkImage = "https://drive.google.com/thumbnail?id=";
+  const imgs = [linkImage + "11pLdf6hjMG3LGR0gSqXrLnGApBf8fucT&sz=w1400", linkImage + "11gxAHtiylCsLs9-7UUrNHMZCDtwNFh_U&sz=w1400", linkImage + "11kj7wMm849mrFNAFdh9IkkFIFVOX1p8q&sz=w1400"];
 
   return (
     <>
@@ -17,7 +18,7 @@ const ShopPage = () => {
       <main>
         <aside>
           <img
-            src="..\public\Ads 1.png"
+            src="https://drive.google.com/thumbnail?id=11Qez9QgIOzgB1B5i1Q3XxPQiDh33fQ9f&sz=w250"
             alt=""
           />
         </aside>
@@ -32,7 +33,7 @@ const ShopPage = () => {
         </section>
         <aside>
           <img
-            src="..\public\Ads 1.png"
+            src="https://drive.google.com/thumbnail?id=11Qez9QgIOzgB1B5i1Q3XxPQiDh33fQ9f&sz=w250"
             alt=""
           />
         </aside>
