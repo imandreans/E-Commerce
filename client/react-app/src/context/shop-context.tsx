@@ -55,9 +55,6 @@ export const ShopContextProvider = (props) => {
 
   const navigate = useNavigate();
 
-  console.log("auth " + isAuthenticated);
-  console.log("access_token " + cookies.access_token);
-
   // function to get available money from user
   const fetchAvailableMoney = useCallback(async () => {
     if (!isAuthenticated) return;
